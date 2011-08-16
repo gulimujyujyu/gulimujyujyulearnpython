@@ -1,29 +1,8 @@
 
 #!/usr/local/bin/python
 # -*- coding:utf-8 -*-
-from sys import exit
-from random import randint
-
-class Game(object):
-	def __init__(self, start):
-		self.quips = ["You died. You kinda suck at this.",
-				"Your mom would be proud. If she were smater.",
-				"Such a loser."
-				"I have a small puppu that's better at this."]
-		self.start = start
-		
-	def play(self):
-		next = self.start
-		while True:
-			room = getattr(self,next)
-			print "\n-------------"
-			next = room()
-			
-	def death(self):
-		print self.quips[randint(0,len(self.quips)-1)]
-		exit(1)
-		
-	def princess_lives_here(self):
+class PrincessRoom(object):
+	def run(self):
 		print "You see a beautiful Princess with a shiny crown."
 		print "She offers you some cake."
 		
@@ -46,8 +25,9 @@ class Game(object):
 		else:
 			print "The princess looks at you confused and just points at the cake."
 			return "princess_lives_here"
-			
-	def gold_koi_pond(self):
+
+class GoldKoiRoom(object):			
+	def run(self):
 		print "There is a garden with a koi pond in the center."
 		print "You walk close and see a massive fin poke out."
 		print "You peek in and a creepy looking huge Koi stares at you."
@@ -77,7 +57,8 @@ class Game(object):
 			print "The Koi gets annoyed and wiggles a bit."
 			return 'gold_koi_pond'
 
-	def bear_with_sword(self):
+class BearWithSword(object):
+	def run(self):
 		print "Puzzled, you are about to pick up the fish poop diamond when"
 		print "a bear bearing a load bearing sword walks in."
 		print '"Hey! That\' my diamond! Where\'d you get that?"'
@@ -102,8 +83,9 @@ class Game(object):
 		else:
 			print "The bear look puzzled as to why you'd do that."
 			return "bear_with_sword"
-			
-	def big_iron_gate(self):
+
+class BigIronGate():			
+	def run(self):
 		print "You walk up to the big iron gate and see there's a handle."
 		
 		open_it = raw_input('> ')
@@ -117,11 +99,3 @@ class Game(object):
 		else:
 			print "That doesn't seem sensible. I mean, the door's right there."
 			return 'big_iron_gate'
-		
-a_game = Game("princess_lives_here")
-a_game.play()
-		
-		
-		
-		
-		
